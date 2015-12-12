@@ -8,10 +8,11 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt);
   // Define the configuration for all the tasks
   grunt.initConfig({
-      pkg: grunt.file.readJSON('package.json'),
-      
-      // Make sure code styles are up to par and there are no obvious mistakes
-	  options: {
+          pkg: grunt.file.readJSON('package.json'),
+
+    // Make sure code styles are up to par and there are no obvious mistakes
+    jshint: {
+      options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
