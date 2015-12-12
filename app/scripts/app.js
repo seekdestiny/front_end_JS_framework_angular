@@ -1,5 +1,8 @@
-        var app = angular.module('confusionApp', []);
-        app.controller('menuController', function() {
+'use strict';       
+angular.module('confusionApp', [])
+    .controller('menuController', function() {
+		    this.tab == 1;
+			this.filtText = '';
             var dishes=[ 
                   {
                     name: 'Uthapizza',
@@ -40,7 +43,6 @@
             ];
 
             this.dishes = dishes;
-            this.tab = 1;
             this.select = function (setTab) {
                 this.tab = setTab;
 
@@ -56,6 +58,5 @@
             this.isSelected = function (checkTab) {
                 return (this.tab == checkTab);
             };
-            this.filtText = '';
         });
 
