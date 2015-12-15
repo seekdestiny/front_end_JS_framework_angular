@@ -76,11 +76,12 @@
                     </li>
                 </ul>
                 <form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate role="form">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{ 'has-error' : commentForm.author.$error.required && !commentForm.author.$pristine }">
                         <label for="author" class="col-sm-3 control-label">Your Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="author" name="author" placeholder="Enter Your Name"
                             ng-model="comment.author" required>
+                            <span ng-show="commentForm.author.$error.required && !commentForm.author.$pristine" class="help-block">Your name is required.</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,12 +109,13 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{ 'has-error' : commentForm.commentText.$error.required && !commentForm.commentText.$pristine }">
                         <label for="commentText" class="col-sm-3 control-label">Your Comments</label>
                         <div class="col-sm-9">
                             <textarea class="col-sm-12 form-contol" id="commentText" name="commentText" rows="12"
                             ng-model="comment.comment" required>
                             </textarea>
+                            <span ng-show="commentForm.commentText.$error.required && !commentForm.commentText.$pristine" class="help-block">Your comment is required.</span>
                         </div>
                     </div>
                     <div class="form-group">
