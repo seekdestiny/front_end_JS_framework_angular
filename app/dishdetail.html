@@ -66,7 +66,7 @@
               </ul>
             </div>
             <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
-                <ul style="list-style: none">
+                <ul style="list-style: none" ng-show="commentForm.$valid && !commentForm.$pristine">
                     <li>
                         <blockquote>
                             <p>{{comment.rating}} Stars</p>
