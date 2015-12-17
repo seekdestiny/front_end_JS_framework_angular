@@ -42,7 +42,7 @@ angular.module('confusionApp')
     .controller('FeedbackController', ['$scope', function($scope) {
                 $scope.sendFeedback = function() {
                     console.log($scope.feedback);
-                    if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+                    if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
                         $scope.invalidChannelSelection = true;
                         console.log('incorrect');
                     }
@@ -86,5 +86,5 @@ angular.module('confusionApp')
                 $scope.commentForm.$setPristine();
                 //Step 5: reset your JavaScript object that holds your comment
                 $scope.comment = {rating:"5", comment:"", author:"", date:"" };
-            }
+            };
     }]);
