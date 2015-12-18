@@ -104,6 +104,13 @@ angular.module('confusionApp')
             $scope.chief = chief;
         }])
 
+        .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
+
+			var leaders = corporateFactory.getLeaders();
+            
+            $scope.leaders = leaders;
+        }])
+
         // implement the IndexController and About Controller here
 
 
