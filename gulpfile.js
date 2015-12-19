@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 var ngannotate = require('gulp-ng-annotate');
 
 gulp.task('jshint', function() {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src('app/scripts/**/*.js,gulpfile.js')
   .pipe(jshint())
   .pipe(jshint.reporter(stylish));
 });
@@ -29,6 +29,8 @@ gulp.task('clean', function() {
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');
+    gulp.src('app/views/*.html')
+	.pipe(gulp.dest('dist/views'));
 });
 
 gulp.task('usemin',['jshint'], function () {
@@ -58,7 +60,7 @@ gulp.task('copyfonts', ['clean'], function() {
 // Watch
 gulp.task('watch', ['browser-sync'], function() {
   // Watch .js files
-  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html}', ['usemin']);
+  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html,gulpfile.js}', ['usemin']);
       // Watch image files
   gulp.watch('app/images/**/*', ['imagemin']);
 
@@ -70,7 +72,8 @@ gulp.task('browser-sync', ['default'], function () {
       'app/styles/**/*.css',
       'app/images/**/*.png',
       'app/scripts/**/*.js',
-      'dist/**/*'
+      'dist/**/*',
+	  'gulpfile.js'
    ];
 
    browserSync.init(files, {
