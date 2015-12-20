@@ -8,8 +8,13 @@ angular.module('confusionApp')
             $scope.filtText = '';
             $scope.showDetails = false;
 
-            $scope.dishes= menuFactory.getDishes();
-
+            $scope.dishes = {};
+			menuFactory.getDishes()
+			.then(
+			    function(response) {
+					$scope.dishes = response.data;
+				}
+		    );
                         
             $scope.select = function(setTab) {
                 $scope.tab = setTab;
@@ -70,9 +75,15 @@ angular.module('confusionApp')
 
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
-            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
-            
-            $scope.dish = dish;
+			$scope.dish = {};
+
+            menuFactory.getDish(parseInt($stateParams.id,10))
+			.then(
+			    function(response) {
+                    $scope.dish = response.data;
+					$scope.showDish = true;
+				}
+			);
             
         }])
 
@@ -94,21 +105,43 @@ angular.module('confusionApp')
         }])
 
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
+			$scope.dish = {};
+            $scope.promotion = {};
+            $scope.chief = {};
 
-            var dish= menuFactory.getDish(0);
-			var promotion = menuFactory.getPromotion(0);
-			var chief = corporateFactory.getLeader(3);
-            
-            $scope.dish = dish;
-            $scope.promotion = promotion;
-            $scope.chief = chief;
+            menuFactory.getDish(0)
+			.then(
+			    function(response) {
+                    $scope.dish = response.data;
+					$scope.showDish = true;
+				}
+		    );
+
+			menuFactory.getPromotion(0)
+			.then(
+			    function(response) {
+                    $scope.promotion = response.data;
+				}
+			);
+
+			corporateFactory.getLeader(3)
+			.then(
+                function(respons) {
+                    $scope.chief = response.data;
+				}
+			);
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
 
-			var leaders = corporateFactory.getLeaders();
-            
-            $scope.leaders = leaders;
+			$scope.leaders = {};
+			
+			corporateFactory.getLeaders()
+			.then(
+			    function(response) {
+                    $scope.leaders = response.data;
+				}
+			);
         }])
 
         // implement the IndexController and About Controller here
