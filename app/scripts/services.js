@@ -3,7 +3,7 @@
 angular.module('confusionApp')
         .constant("baseURL", "http://localhost:3000/")
 
-        .service('menuFactory', function() {
+        .service('menuFactory', ['$http', 'baseURL', function($http, baseURL) {
     
             var dishes=[
                          {
