@@ -12,9 +12,9 @@ angular.module('confusionApp')
 
             $scope.dishes = {};
 			menuFactory.getDishes()
-			.then(
+			.query(
 			    function(response) {
-					$scope.dishes = response.data;
+					$scope.dishes = response;
 					$scope.showMenu = true;
 				},
 				function(response) {
@@ -85,10 +85,10 @@ angular.module('confusionApp')
 			$scope.showDish = false;
             $scope.message="Loading ...";
 
-            menuFactory.getDish(parseInt($stateParams.id,10))
-			.then(
+            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
+			.$promise.then(
 			    function(response) {
-                    $scope.dish = response.data;
+                    $scope.dish = response;
 					$scope.showDish = true;
 				},
 				 function(response) {
@@ -123,10 +123,10 @@ angular.module('confusionApp')
 			$scope.showChief = false;
             $scope.message="Loading ...";
 
-            menuFactory.getDish(0)
-			.then(
+            $scope.dish = menuFactory.getDishes().get({id:0})
+			.$promise.then(
 			    function(response) {
-                    $scope.dish = response.data;
+                    $scope.dish = response;
 					$scope.showDish = true;
 				},
                 function(response) {
@@ -134,10 +134,10 @@ angular.module('confusionApp')
 				}
 		    );
 
-			menuFactory.getPromotion(0)
-			.then(
+			$scope.promotion = menuFactory.getPromotions().get({id:0})
+			.$promise.then(
 			    function(response) {
-                    $scope.promotion = response.data;
+                    $scope.promotion = response;
                     $scope.showPromotion = true;
 				},
 				function(response) {
@@ -145,10 +145,10 @@ angular.module('confusionApp')
 				}
 			);
 
-			corporateFactory.getLeader(3)
-			.then(
+			$scope.chief = corporateFactory.getLeaders().get({id:3})
+			.$promise.then(
                 function(response) {
-                    $scope.chief = response.data;
+                    $scope.chief = response;
 					$scope.showChief = true;
 				},
 				function(response) {
@@ -163,10 +163,10 @@ angular.module('confusionApp')
 			$scope.showLeaders = false;
             $scope.message="Loading ...";
 			
-			corporateFactory.getLeaders()
-			.then(
+		    $scope.leaders = corporateFactory.getLeaders()
+			.query(
 			    function(response) {
-                    $scope.leaders = response.data;
+                    $scope.leaders = response;
                     $scope.showLeaders = true;
 				},
 				function(response) {
