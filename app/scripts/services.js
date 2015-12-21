@@ -42,4 +42,23 @@ angular.module('confusionApp')
     
         }])
 
+		.factory('feedbackFactory', ['$resource', 'baseURL', function($resource, baseURL) {
+    
+            var feedbackfac = {};
+    
+            feedbackfac.getFeedbacks = function(){
+
+				    return $resource(baseURL+"feedback/",null);
+                    
+            };
+    
+			return feedbackfac;
+    
+
+            // Implement two functions, one named getLeaders,
+            // the other named getLeader(index)
+            // Remember this is a factory not a service
+    
+    
+        }])
 ;
