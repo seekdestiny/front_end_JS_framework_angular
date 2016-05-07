@@ -25,6 +25,7 @@ cd json-server
 $ json-server --watch db.json
 ```
 
+Use Gulp to watch live demo
 ```bash
 in front_end_JS_framework_angular folder
 gulp watch
